@@ -1,0 +1,48 @@
+{
+    "mappings": [
+        {
+            "request": {
+                "urlPath": "/api/getUsers",
+                "method": "POST",
+                "headers": {
+                    "x-api-key": {
+                        "equalTo": ".*"
+                        
+                    },
+                    "authorization": {
+                            "equalTo": ".*"
+                        }
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "jsonBody": {
+                    "data": [
+                        {
+                        "email": "admin1@example.com",
+                        "password": "p@SSword123",
+                        "roles": ["ADMIN", "EMPLOYEE"],
+                        "location": "REG7_CEBU_CEBU_CITY"
+                    },
+                    {
+                        "email": "admin2@example.com",
+                        "password": "p@SSword456",
+                        "roles": ["SUPERADMIN", "ADMIN", "EMPLOYEE"],
+                        "location": "REG7_CEBU_CEBU_CITY"
+                    },
+                    {
+                        "email": "nicole@codev.com",
+                        "password": "@sdF1234",
+                        "roles": ["EMPLOYEE"],
+                        "location": "REG3_TARLAC_GERONA"
+                    }
+                    ],
+                    "errors": null
+                }
+            }
+        }
+    ]
+}
