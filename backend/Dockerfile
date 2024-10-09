@@ -5,11 +5,11 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Install dependencies
-COPY package*.json ./
-RUN npm install
+COPY package*.json .
+RUN npm ci
 
 # Copy the application code
 COPY . .
 
 # Start the Node.js app
-CMD ["node", "server.js"]
+CMD ["npm", "start"]
