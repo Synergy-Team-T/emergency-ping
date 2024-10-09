@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const validator = require('validator');
 const { v4: uuid4 } = require('uuid');
@@ -23,7 +23,7 @@ const userSchema = new Schema({
   },
 }, { timestamps: true });
 
-userSchema.statics.signUp = async function(email, password) {
+userSchema.statics.signUp = async function (email, password) {
   if (!(email && password)) {
     throw Error('All fields must be filled');
   }
@@ -51,7 +51,7 @@ userSchema.statics.signUp = async function(email, password) {
   return user;
 }
 
-userSchema.statics.signIn = async function(email, password) {
+userSchema.statics.signIn = async function (email, password) {
   if (!(email && password)) {
     throw Error('All fields must be filled');
   }
@@ -71,12 +71,12 @@ userSchema.statics.signIn = async function(email, password) {
   return user;
 }
 
-userSchema.methods.hasAnyRoles = async function(...roles) {
+userSchema.methods.hasAnyRoles = async function (...roles) {
   // Preparation for roles.
   return true;
 }
 
-userSchema.methods.hasAllRoles = async function(...roles) {
+userSchema.methods.hasAllRoles = async function (...roles) {
   // Preparation for roles.
   return true;
 }
