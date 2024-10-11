@@ -84,6 +84,6 @@ Make sure you have the following installed:
     Run the command below to start wiremock on port 3000
 
     ```Shell
-    docker run -d --rm -p 3000:3000 backend
+    docker-compose up
     ```
     
