@@ -47,4 +47,5 @@ testem.log
 Thumbs.db
 
 backend/.env
+web/.env
 .vs/
