@@ -26,7 +26,7 @@ apiRouter.use('/users', userRouter);
 app.use('/api', apiRouter);
 
 // Connect to DB
-mongoose.connect('mongodb://emergency-ping-mongodb-1/')
+mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('Successfully connected to DB.');
   })
