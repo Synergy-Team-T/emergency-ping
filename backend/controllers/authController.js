@@ -3,12 +3,14 @@ const { checkPassword, createUserToken, hashPassword } = require('../core/utils'
 const User = require('../models/userModel');
 
 
+const TOKEN_EXPIRATION = '1d';
+
 const signUpUser = async (req, res) => {
 
   try {
     const user = await User.validateThenCreate({ ...req.body });
 
-    const accessToken = createUserToken(user, '10m');
+    const accessToken = createUserToken(user, TOKEN_EXPIRATION);
     const refreshToken = createUserToken(user, '1d');
 
     return res
@@ -40,7 +42,7 @@ const signInUser = async (req, res) => {
     return res.status(400).json({ error: 'Invalid credentials' });
   }
 
-  const accessToken = createUserToken(user, '10m');
+  const accessToken = createUserToken(user, TOKEN_EXPIRATION);
   const refreshToken = createUserToken(user, '1d');
 
   return res
