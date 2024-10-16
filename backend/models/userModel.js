@@ -25,6 +25,22 @@ const userSchema = new Schema({
     type: String,
     enum: ['superuser', 'admin', 'user'],
   }],
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
+  },
+  locationGroup: {
+    type: Schema.Types.ObjectId,
+    ref: 'LocationGroup',
+    required: true,
+  },
+  locationAddress: {
+    type: String,
+  },
 }, { timestamps: true });
 
 if (!userSchema.options.toObject) userSchema.options.toObject = {};
