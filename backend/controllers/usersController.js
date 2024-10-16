@@ -108,6 +108,11 @@ const getUsers = async (req, res) => {
   return res.status(200).json(users);
 }
 
+const getEmployeeLocations = async (req, res) => {
+  const users = await User.find({}).sort({createdAt: -1});
+  res.status(200).json(users);
+}
+
 const getUser = async (req, res) => {
 
   const { id } = req.params;
@@ -173,6 +178,7 @@ module.exports = {
   deleteUser,
   getUser,
   getUsers,
+  getEmployeeLocations,
   updateUser,
 }
 

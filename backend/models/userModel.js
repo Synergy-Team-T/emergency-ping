@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const validator = require('validator');
 const { v4: uuid4 } = require('uuid');
