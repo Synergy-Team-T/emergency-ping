@@ -41,6 +41,10 @@ const userSchema = new Schema({
   locationAddress: {
     type: String,
   },
+  recentStatus: {
+    type: Schema.Types.ObjectId,
+    ref: 'UserStatus',
+  }
 }, { timestamps: true });
 
 if (!userSchema.options.toObject) userSchema.options.toObject = {};

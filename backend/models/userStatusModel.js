@@ -15,6 +15,7 @@ const userStatusSchema = Schema({
   status: {
     type: String,
     enum: ['PENDING', 'NOT_SAFE', 'SAFE', 'EXPIRED'],
+    default: 'PENDING',
   },
 }, { timestamps: true });
 
