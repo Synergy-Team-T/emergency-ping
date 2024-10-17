@@ -14,9 +14,11 @@ const App = () => {
 
   const MainApp = 
     <AuthWrapper>
-      <div className="flex flex-col h-screen">
+      <div className="flex flex-col h-screen bg-[#fbfbfb]">
         <Navbar />
-        <Outlet />
+        <div className='flex flex-col h-[100%] p-5'>
+          <Outlet />
+        </div>
       </div>
     </AuthWrapper>;
 
