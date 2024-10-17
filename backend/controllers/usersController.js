@@ -107,6 +107,15 @@ const createUserStatus = async (req, res) => {
       { recentStatus: record._id },
     );
 
+    await UserStatus.updateMany(
+      {
+        user: record.user,
+        status: { '$ne': 'EXPIRED' },
+        _id: { '$ne': record._id }
+      },
+      { status: 'EXPIRED' },
+    )
+
     return res.status(200).json(record);
 
   } catch (error) {
