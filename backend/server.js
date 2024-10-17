@@ -4,6 +4,12 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
+const authRouter = require('./routes/auth');
+const calamitiesRouter = require('./routes/calamities');
+const locationGroupsRouter = require('./routes/locationGroups');
+const usersRouter = require('./routes/users');
+
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -18,12 +24,16 @@ app.get('/api/message', (req, res) => {
 
 // Register routers
 const apiRouter = express.Router();
-const authRouter = require('./routes/auth');
-const userRouter = require('./routes/users');
 
 apiRouter.use('/auth', authRouter);
-apiRouter.use('/users', userRouter);
+apiRouter.use('/calamities', calamitiesRouter);
+apiRouter.use('/locations/groups', locationGroupsRouter);
+apiRouter.use('/users', usersRouter);
 app.use('/api', apiRouter);
+
+const onStartup = async () => {
+  console.log('On startup.');
+}
 
 // Connect to DB
 mongoose.connect(process.env.MONGO_URI)
