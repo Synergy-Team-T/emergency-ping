@@ -10,11 +10,13 @@ const {
 } = require('../core/controllers');
 
 
-const createRecord = deriveCreateEndpoint(Calamity);
-const getRecords = deriveGetManyEndpoint(Calamity);
-const getRecord = deriveGetOneEndpoint(Calamity);
-const updateRecord = deriveUpdateEndpoint(Calamity);
-const deleteRecord = deriveDeleteEndpoint(Calamity);
+const FIELDS_TO_POPULATE = ['locationGroups'];
+
+const createRecord = deriveCreateEndpoint(Calamity, FIELDS_TO_POPULATE);
+const getRecords = deriveGetManyEndpoint(Calamity, FIELDS_TO_POPULATE);
+const getRecord = deriveGetOneEndpoint(Calamity, FIELDS_TO_POPULATE);
+const updateRecord = deriveUpdateEndpoint(Calamity, FIELDS_TO_POPULATE);
+const deleteRecord = deriveDeleteEndpoint(Calamity, FIELDS_TO_POPULATE);
 
 
 module.exports = {
