@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 
 
-const deriveCreateEndpoint = (model) => {
+const deriveCreateEndpoint = (model, populateFields = []) => {
     
   return async (req, res) => {
       try {
-        const record = await model.create({ ...req.body });
-      if (!record) {
-        throw Error('Record not created');
-      }
+        const record = await model.create({ ...req.body }).populate(populateFields);
+        if (!record) {
+          throw Error('Record not created');
+        }
   
       return res.status(200).json(record);
     
@@ -18,13 +18,14 @@ const deriveCreateEndpoint = (model) => {
   }
 }
 
-const deriveGetManyEndpoint = (model) => {
+const deriveGetManyEndpoint = (model, populateFields = []) => {
 
   return async (req, res) => {
     try {
       const records = await model
         .find()
         .sort({ createdAt: -1 })
+        .populate(populateFields)
         .lean();
   
       return res.status(200).json(records);
@@ -35,7 +36,7 @@ const deriveGetManyEndpoint = (model) => {
   }
 }
 
-const deriveGetOneEndpoint = (model) => {
+const deriveGetOneEndpoint = (model, populateFields = []) => {
 
   return async (req, res) => {
     try {
@@ -44,7 +45,10 @@ const deriveGetOneEndpoint = (model) => {
         return res.status(404).json({error: 'No such record'});
       }
   
-      const record = await model.findById(id).lean();
+      const record = await model.findById(id)
+        .populate(populateFields)
+        .lean();
+
       if (!record) {
         return res.status(404).json({ error: 'No such record'});
       }
@@ -57,7 +61,7 @@ const deriveGetOneEndpoint = (model) => {
   }
 }
 
-const deriveUpdateEndpoint = (model) => {
+const deriveUpdateEndpoint = (model, populateFields = []) => {
 
   return async (req, res) => {
     try {
@@ -71,7 +75,14 @@ const deriveUpdateEndpoint = (model) => {
         return res.status(404).json({ error: 'No such record'});
       }
   
-      const record = await model.findOneAndUpdate({ _id: id }, { ...req.body }).lean();
+      const record = await model
+        .findOneAndUpdate(
+          { _id: id },
+          { ...req.body },
+        )
+        .populate(populateFields)
+        .lean();
+
       if (!record) {
         return res.status(400).json({ error: 'Record not updated'});
       }
@@ -84,7 +95,7 @@ const deriveUpdateEndpoint = (model) => {
   }
 }
 
-const deriveDeleteEndpoint = (model) => {
+const deriveDeleteEndpoint = (model, populateFields = []) => {
 
   return async (req, res) => {
     try {
@@ -93,7 +104,7 @@ const deriveDeleteEndpoint = (model) => {
         return res.status(404).json({error: 'No such record'});
       }
   
-      const record = await model.findById(id);
+      const record = await model.findById(id).populate(populateFields);
       if (!record) {
         return res.status(404).json({ error: 'No such record'});
       }

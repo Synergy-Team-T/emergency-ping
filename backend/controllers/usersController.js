@@ -3,10 +3,15 @@ const mongoose = require('mongoose');
 const User = require('../models/userModel');
 
 
+const FIELDS_TO_POPULATE = ['locationGroup', 'recentStatus'];
+
 const createUser = async (req, res) => {
 
   try {
-    const user = await User.validateThenCreate({ ...req.body });
+    const user = await User
+      .validateThenCreate({ ...req.body })
+      .populate(FIELDS_TO_POPULATE);
+      
     return user.toObject();
   
   } catch (error) {
@@ -18,7 +23,8 @@ const getUsers = async (req, res) => {
 
   const users = await User
     .find({}, '-__v -password -fsUniquifier')
-    .sort({createdAt: -1});
+    .sort({createdAt: -1})
+    .populate(FIELDS_TO_POPULATE);
 
   return res.status(200).json(users);
 }
@@ -39,7 +45,10 @@ const getUser = async (req, res) => {
     return res.status(403).json({ error: 'Request not allowed' });
   }
 
-  const user = await User.findById(id);
+  const user = await User
+    .findById(id)
+    .populate(FIELDS_TO_POPULATE);
+
   if (!user) {
     return res.status(404).json({error: 'No such user'});
   }
@@ -58,7 +67,10 @@ const updateUser = async (req, res) => {
     return res.status(403).json({ error: 'Request not allowed' });
   }
 
-  let user = await User.findById(id);
+  let user = await User
+    .findById(id)
+    .populate(FIELDS_TO_POPULATE);
+
   if (!user) {
     return res.status(404).json({error: 'No such user'});
   }
@@ -79,7 +91,10 @@ const deleteUser = async (req, res) => {
     return res.status(404).json({error: 'No such user'});
   }
 
-  const user = await User.findByIdAndDelete(id);
+  const user = await User
+    .findByIdAndDelete(id)
+    .populate(FIELDS_TO_POPULATE);
+    
   if (!user) {
     return res.status(404).json({ error: 'No such user' });
   }

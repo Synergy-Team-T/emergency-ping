@@ -7,9 +7,14 @@ const {
 } = require('../core/controllers');
 
 
+const FIELDS_TO_POPULATE = ['user', 'calamity'];
+
 const createRecord = async (req, res) => {
   try {
-    const record = await UserStatus.create({...req.body});
+    const record = await UserStatus
+      .create({...req.body})
+      .populate(FIELDS_TO_POPULATE);
+      
     if (!record) {
       throw Error('Record not created');
     }
@@ -22,7 +27,7 @@ const createRecord = async (req, res) => {
     await UserStatus.updateMany(
       {
         user: record.user,
-        status: { '$ne': 'EXPIRED' },
+        status: 'PENDING',
         _id: { '$ne': record._id }
       },
       { status: 'EXPIRED' },
@@ -35,10 +40,10 @@ const createRecord = async (req, res) => {
   }
 }
 
-const getRecords = deriveGetManyEndpoint(UserStatus);
-const getRecord = deriveGetOneEndpoint(UserStatus);
-const updateRecord = deriveUpdateEndpoint(UserStatus);
-const deleteRecord = deriveDeleteEndpoint(UserStatus);
+const getRecords = deriveGetManyEndpoint(UserStatus, FIELDS_TO_POPULATE);
+const getRecord = deriveGetOneEndpoint(UserStatus, FIELDS_TO_POPULATE);
+const updateRecord = deriveUpdateEndpoint(UserStatus, FIELDS_TO_POPULATE);
+const deleteRecord = deriveDeleteEndpoint(UserStatus, FIELDS_TO_POPULATE);
 
 
 module.exports = {
