@@ -8,6 +8,7 @@ const authRouter = require('./routes/auth');
 const calamitiesRouter = require('./routes/calamities');
 const locationGroupsRouter = require('./routes/locationGroups');
 const usersRouter = require('./routes/users');
+const userStatusRouter = require('./routes/userStatus');
 
 
 const app = express();
@@ -28,6 +29,7 @@ const apiRouter = express.Router();
 apiRouter.use('/auth', authRouter);
 apiRouter.use('/calamities', calamitiesRouter);
 apiRouter.use('/locations/groups', locationGroupsRouter);
+apiRouter.use('/users/status', userStatusRouter);
 apiRouter.use('/users', usersRouter);
 app.use('/api', apiRouter);
 

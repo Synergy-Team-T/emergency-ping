@@ -1,14 +1,6 @@
 const mongoose = require('mongoose');
 
 const User = require('../models/userModel');
-const UserStatus = require('../models/userStatusModel');
-const {
-  deriveCreateEndpoint,
-  deriveGetManyEndpoint,
-  deriveGetOneEndpoint,
-  deriveUpdateEndpoint,
-  deriveDeleteEndpoint,
-} = require('../core/controllers');
 
 
 const createUser = async (req, res) => {
@@ -95,50 +87,12 @@ const deleteUser = async (req, res) => {
   return res.status(200).json(user.toObject());
 }
 
-const createUserStatus = async (req, res) => {
-  try {
-    const record = await UserStatus.create({...req.body});
-    if (!record) {
-      throw Error('Record not created');
-    }
-
-    await User.validateOneThenUpdate(
-      { _id: record.user },
-      { recentStatus: record._id },
-    );
-
-    await UserStatus.updateMany(
-      {
-        user: record.user,
-        status: { '$ne': 'EXPIRED' },
-        _id: { '$ne': record._id }
-      },
-      { status: 'EXPIRED' },
-    )
-
-    return res.status(200).json(record);
-
-  } catch (error) {
-    return res.status(400).json({ error: error.message });
-  }
-}
-
-const getUsersStatus = deriveGetManyEndpoint(UserStatus);
-const getUserStatus = deriveGetOneEndpoint(UserStatus);
-const updateUserStatus = deriveUpdateEndpoint(UserStatus);
-const deleteUserStatus = deriveDeleteEndpoint(UserStatus);
-
 
 module.exports = {
   createUser,
-  createUserStatus,
   deleteUser,
-  deleteUserStatus,
   getUser,
-  getUserStatus,
   getUsers,
-  getUsersStatus,
   getEmployeeLocations,
   updateUser,
-  updateUserStatus,
 }
