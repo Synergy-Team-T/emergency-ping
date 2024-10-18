@@ -13,11 +13,11 @@ const router = express.Router();
 
 router.use(requireAuthentication);
 
-router.post('/', authorizeAnyRoles('superuser', 'admin'), createRecord);
-router.get('/', authorizeAnyRoles('superuser', 'admin'), getRecords);
-router.get('/:id', getRecord);
-router.put('/:id', updateRecord);
-router.delete('/:id', deleteRecord);
+router.post('/', authorizeAnyRoles('SUPERUSER', 'ADMIN'), createRecord);
+router.get('/', authorizeAnyRoles('SUPERUSER', 'ADMIN'), getRecords);
+router.get('/:id', getRecord); // permission applied to item level
+router.put('/:id', updateRecord); // permission applied to item level
+router.delete('/:id', authorizeAnyRoles('SUPERUSER'), deleteRecord);
 
 
 module.exports = router;
