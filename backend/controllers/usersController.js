@@ -41,7 +41,11 @@ const getUser = async (req, res) => {
     return res.status(404).json({error: 'No such user'});
   }
 
-  if (req.user._id != id) {
+  // Check for item level permission.
+  if (
+    req.user._id != id
+    && !req.user.roles.some((role) => ['SUPERUSER'].includes(role))
+  ) {
     return res.status(403).json({ error: 'Request not allowed' });
   }
 
@@ -63,7 +67,11 @@ const updateUser = async (req, res) => {
     return res.status(404).json({error: 'No such user'});
   }
 
-  if (req.user._id != id) {
+  // Check for item level permission.
+  if (
+    req.user._id != id
+    && !req.user.roles.some((role) => ['SUPERUSER'].includes(role))
+  ) {
     return res.status(403).json({ error: 'Request not allowed' });
   }
 
@@ -94,7 +102,7 @@ const deleteUser = async (req, res) => {
   const user = await User
     .findByIdAndDelete(id)
     .populate(FIELDS_TO_POPULATE);
-    
+
   if (!user) {
     return res.status(404).json({ error: 'No such user' });
   }
