@@ -78,7 +78,6 @@ userSchema.statics.validateThenCreate = async function (userData) {
 
   const user = this.create({
     ...userData,
-    roles: [...roles, "USER"],
   });
 
   return user;
