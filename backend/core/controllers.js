@@ -5,7 +5,7 @@ const deriveCreateEndpoint = (model, populateFields = []) => {
     
   return async (req, res) => {
       try {
-        const record = await model.create({ ...req.body }).populate(populateFields);
+        const record = await model.create({ ...req.body });
         if (!record) {
           throw Error('Record not created');
         }
