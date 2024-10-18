@@ -74,13 +74,10 @@ userSchema.statics.validateThenCreate = async function(userData) {
     userData.fsUniquifier = uuid4();
   }
 
-  const user = await this.create({
+  const user = this.create({
     ...userData,
     roles: ['user'],
   });
-  if (!user) {
-    throw Error('User not created');
-  }
 
   return user;
 }
@@ -112,10 +109,10 @@ userSchema.statics.validateOneThenUpdate = async function(conditions, userData) 
     userData.fsUniquifier = uuid4();
   }
 
-  user = await this.findOneAndUpdate({ ...conditions }, { ...userData });
-  if (!user) {
-    throw Error('User not updated');
-  }
+  user = this.findOneAndUpdate(
+    { ...conditions },
+    { ...userData },
+  );
 
   return user;
 }
