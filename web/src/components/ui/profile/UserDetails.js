@@ -11,7 +11,7 @@ const UserDetails = ({ userDetails }) => {
         <div className="w-[100%] bg-[rgb(244,247,247)] px-7 py-4">
           User Profile
         </div>
-        <div className="flex gap-10 flex-col items-center justify-center p-4">
+        <div className="flex gap-8 flex-col items-center justify-center p-4">
           <img
             src={userDetails.profilePic}
             alt="User"
