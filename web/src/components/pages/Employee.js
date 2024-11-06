@@ -38,7 +38,7 @@ const EmployeePage = () => {
   return (
     <div class="flex h-full gap-2">
       <EmployeeDetails userDetails={userDetails} />
-      <EmployeeActions userDetails={userDetails} amenities={amenities}/>
+      <EmployeeActions userDetails={userDetails} amenities={amenities} />
     </div>
   );
 };
