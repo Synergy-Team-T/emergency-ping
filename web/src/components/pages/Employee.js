@@ -2,6 +2,7 @@ import EmployeeActions from "@synergy-project-t/ui-components/employee/EmployeeA
 import EmployeeDetails from "@synergy-project-t/ui-components/employee/EmployeeDetails";
 import { StoreUtil } from "@synergy-project-t/utils";
 import React from "react";
+import { sendStatus } from "@synergy-project-t/utils/user";
 
 const userDetails = {
   email: "abcd@yopmail.com",
@@ -36,13 +37,22 @@ const amenities = [
   },
 ];
 const EmployeePage = () => {
-  const { userInfo } = StoreUtil.useUserAuthStore(
+  const { userInfo, setUserInfo } = StoreUtil.useUserAuthStore(
     (state) => state
   );
 
+  const handleClickSend = async (type) => {
+    await sendStatus(["http://localhost:5000", userInfo.status._id, type]);
+    const status = {
+      ...userInfo.status,
+      status: type,
+    };
+    setUserInfo({ ...userInfo, status });
+  };
+
   return (
     <div class="flex h-full gap-2">
-      <EmployeeDetails userDetails={userInfo} />
+      <EmployeeDetails userDetails={userInfo} onSendStatus={handleClickSend} />
       <EmployeeActions userDetails={userInfo} amenities={amenities} />
     </div>
   );

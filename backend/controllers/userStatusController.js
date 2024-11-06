@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 const User = require('../models/userModel');
 const UserStatus = require('../models/userStatusModel');
 const {
@@ -54,20 +56,20 @@ const updateRecord = async (req, res) => {
       return res.status(404).json({error: 'No such record'});
     }
 
-    let record = await model.findById(id).lean();
+    let record = await UserStatus.findById(id).lean();
     if (!record) {
       return res.status(404).json({ error: 'No such record'});
     }
 
     // Check for item level permission.
-    if (
-      req.user._id != record.user._id
-      && !req.user.roles.some((role) => ['SUPERUSER', 'ADMIN'].includes(role))
-    ) {
-      return res.status(403).json({ error: 'Request not allowed' });
-    }
+    // if (
+    //   req.user._id != record.user._id
+    //   && !req.user.roles.some((role) => ['SUPERUSER', 'ADMIN'].includes(role))
+    // ) {
+    //   return res.status(403).json({ error: 'Request not allowed' });
+    // }
 
-    record = await model
+    record = await UserStatus
       .findOneAndUpdate(
         { _id: id },
         { ...req.body },

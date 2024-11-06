@@ -19,7 +19,9 @@ const useUserAuthStore = create(
                 lastName: null,
                 roles: [],
                 email: null,
-                status: 'SAFE',
+                status: {
+                    status: 'SAFE'
+                },
                 locationCode: null,
                 fullLocation: null,
                 address: [],

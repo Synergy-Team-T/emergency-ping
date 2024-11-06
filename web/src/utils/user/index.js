@@ -15,18 +15,17 @@ const getUserStatus = async ([baseUrl = "http://localhost:5000", id]) => {
     throw e;
   }
 
-  return res?.data.find((statusData) => statusData.user === id).status;
+  return res?.data.find((statusData) => statusData.user === id);
 };
 
 const getUserProfile = async ([baseUrl = "http://localhost:5000", id]) => {
   try {
     const [resUser, status, locations] = await Promise.all([
       getUserAuth([baseUrl, id]),
-      getUserStatus([baseUrl, id]), getLocations(baseUrl),
+      getUserStatus([baseUrl, id]),
+      getLocations(baseUrl),
     ]);
-    const userLocation = locations.find(
-      (l) => l._id === resUser.locationGroup
-    );
+    const userLocation = locations.find((l) => l._id === resUser.locationGroup);
     const {
       municipality,
       province,
@@ -43,10 +42,23 @@ const getUserProfile = async ([baseUrl = "http://localhost:5000", id]) => {
       },
       locations,
     };
-    return wew
+    return wew;
   } catch (e) {
     throw e;
   }
 };
 
-export { getUserStatus, getUserProfile };
+const sendStatus = async ([baseUrl = "http://localhost:5000", id, status = 'SAFE']) => {
+  const epURL = `${baseUrl}/api/users/status/${id}`;
+
+  try {
+    await axios.put(epURL, {
+        status,
+    });
+  } catch (e) {
+    console.log("Error sending user status." + epURL);
+    throw e;
+  }
+};
+
+export { getUserStatus, getUserProfile, sendStatus };
