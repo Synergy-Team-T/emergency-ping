@@ -1,5 +1,6 @@
 import EmployeeActions from "@synergy-project-t/ui-components/employee/EmployeeActions";
 import EmployeeDetails from "@synergy-project-t/ui-components/employee/EmployeeDetails";
+import { StoreUtil } from "@synergy-project-t/utils";
 import React from "react";
 
 const userDetails = {
@@ -35,10 +36,14 @@ const amenities = [
   },
 ];
 const EmployeePage = () => {
+  const { userInfo } = StoreUtil.useUserAuthStore(
+    (state) => state
+  );
+
   return (
     <div class="flex h-full gap-2">
-      <EmployeeDetails userDetails={userDetails} />
-      <EmployeeActions userDetails={userDetails} amenities={amenities} />
+      <EmployeeDetails userDetails={userInfo} />
+      <EmployeeActions userDetails={userInfo} amenities={amenities} />
     </div>
   );
 };

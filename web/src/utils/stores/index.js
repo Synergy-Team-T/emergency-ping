@@ -12,6 +12,22 @@ const useUserAuthStore = create(
                 roles: [],
                 email: null,
             },
+            locations: [],
+            userInfo: {
+                id: null,
+                firstName: null,
+                lastName: null,
+                roles: [],
+                email: null,
+                status: 'SAFE',
+                locationCode: null,
+                fullLocation: null,
+                address: [],
+                phone: null,
+            },
+            setLocations: (locations) => set({ 
+                locations,
+            }),
             setUserAuth: (userAuth = {}) => set((state) => ({ 
                 userAuth: {
                     ...state.userAuth,
@@ -31,6 +47,20 @@ const useUserAuthStore = create(
                     email: null
                 }
             }),
+            setUserInfo: (user = {}) => set(() => ({ 
+                userInfo: {
+                    id: user.id,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    roles: user.roles,
+                    email: user.email,
+                    status: user.status,
+                    locationCode: user.locationGroup || user.locationGroup,
+                    fullLocation: user.fullLocation,
+                    address: user.address,
+                    phone: '09123456789',
+                }
+            })),
         }),
         {
             name: 'cepa-storage-userAuth'

@@ -1,4 +1,5 @@
 import { UserDetails, UserAddress } from "@synergy-project-t/ui-components";
+import { StoreUtil } from "@synergy-project-t/utils";
 
 const userDetails = {
   email: "abcd@yopmail.com",
@@ -16,10 +17,13 @@ const userDetails = {
 };
 
 const ProfilePage = () => {
+  const { userInfo } = StoreUtil.useUserAuthStore(
+    (state) => state
+  );
   return (
     <div class="flex h-full gap-2">
-      <UserDetails userDetails={userDetails} />
-      <UserAddress userDetails={userDetails} />
+      <UserDetails userDetails={userInfo} />
+      <UserAddress userDetails={userInfo} />
     </div>
   );
 };
