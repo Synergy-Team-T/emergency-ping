@@ -53,8 +53,8 @@ const UserDetails = ({ userDetails }) => {
             <div className="text-base font-semibold">
               Status:
             </div>
-            <div className={textColor[userDetails.status.toLowerCase()]}>
-              {userDetails.status}
+            <div className={textColor[userDetails.status.status.toLowerCase()]}>
+              {userDetails.status.status}
             </div>
           </div>
         </div>

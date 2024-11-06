@@ -63,7 +63,7 @@ const useUserAuthStore = create(
                     address: user.address,
                     phone: '09123456789',
                     profilePic:
-    "https://gravatar.com/avatar/27205e5c51cb03f862138b22bcb5dc20f94a342e744ff6df1b8dc8af3c865109",
+    "https://internalcodev.blob.core.windows.net/internal-public/employees/603/photo/7548aeee-4873-4f55-9025-b80ef9e078f2.jpeg",
                 }
             })),
         }),
