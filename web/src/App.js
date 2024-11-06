@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { Navbar, Footer } from "@synergy-project-t/ui-components";
 import { AuthWrapper } from "@synergy-project-t/data-wrappers";
-import { LoginPage, Homepage, ProfilePage } from "@synergy-project-t/pages";
+import { LoginPage, Homepage, ProfilePage, EmployeePage } from "@synergy-project-t/pages";
 
 const App = () => {
 
@@ -39,6 +39,10 @@ const App = () => {
         {
           path: "profile",
           element: <ProfilePage />,
+        },
+        {
+          path: "employee",
+          element: <EmployeePage />,
         },
       ],
     },

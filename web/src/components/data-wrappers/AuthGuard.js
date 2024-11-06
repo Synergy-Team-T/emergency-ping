@@ -24,7 +24,7 @@ const AuthGuard = ({children}) => {
         navigate('/');
       }
       else {
-        navigate('/profile');
+        navigate('/employee');
       }
     }
   },[
