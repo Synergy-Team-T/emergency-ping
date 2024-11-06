@@ -24,6 +24,7 @@ const useUserAuthStore = create(
                 fullLocation: null,
                 address: [],
                 phone: null,
+                profilePic: null,
             },
             setLocations: (locations) => set({ 
                 locations,
@@ -59,6 +60,8 @@ const useUserAuthStore = create(
                     fullLocation: user.fullLocation,
                     address: user.address,
                     phone: '09123456789',
+                    profilePic:
+    "https://gravatar.com/avatar/27205e5c51cb03f862138b22bcb5dc20f94a342e744ff6df1b8dc8af3c865109",
                 }
             })),
         }),

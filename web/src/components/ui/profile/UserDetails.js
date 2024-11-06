@@ -7,17 +7,17 @@ const textColor = {
 
 const UserDetails = ({ userDetails }) => {
   return (
-      <div className="w-3/4 h-[100%] flex flex-col relative border rounded-[0.22rem]">
+      <div className="w-full h-full flex flex-col relative border rounded-[0.22rem]">
         <div className="w-[100%] bg-[rgb(244,247,247)] px-7 py-4">
           User Profile
         </div>
-        <div className="flex gap-8 flex-col items-center justify-center p-4">
+        <div className="flex gap-2 flex-col items-center justify-center p-2">
           <img
             src={userDetails.profilePic}
             alt="User"
             class="w-48 h-48 rounded-full"
           />
-          <div className="flex gap-4 flex-row items-center justify-between min-w-full px-20">
+          <div className="flex gap-4 flex-row items-center justify-between min-w-full px-20 mt-5 border-t-2 py-1">
             <div className="text-base font-semibold">
               Name:
             </div>
@@ -25,7 +25,7 @@ const UserDetails = ({ userDetails }) => {
               {`${userDetails.firstName} ${userDetails.lastName}`}
             </div>
           </div>
-          <div className="flex gap-4 flex-row items-center justify-between min-w-full px-20">
+          <div className="flex gap-4 flex-row items-center justify-between min-w-full px-20 border-t-2 py-1">
             <div className="text-base font-semibold">
               Phone number:
             </div>
@@ -33,7 +33,7 @@ const UserDetails = ({ userDetails }) => {
               {userDetails.phone}
             </div>
           </div>
-          <div className="flex gap-4 flex-row items-center justify-between min-w-full px-20">
+          <div className="flex gap-4 flex-row items-center justify-between min-w-full px-20 border-t-2 py-1">
             <div className="text-base font-semibold">
               Email:
             </div>
@@ -41,15 +41,15 @@ const UserDetails = ({ userDetails }) => {
               {userDetails.email}
             </div>
           </div>
-          <div className="flex gap-4 flex-row items-center justify-between min-w-full px-20">
+          <div className="flex gap-4 flex-row items-center justify-between min-w-full px-20 border-t-2 py-1">
             <div className="text-base font-semibold">
               Address:
             </div>
-            <div className="text-base font-normal">
+            <div className="text-base font-normal max-w-[200px]">
               {userDetails.fullLocation}
             </div>
           </div>
-          <div className="flex gap-4 flex-row items-center justify-between min-w-full px-20">
+          <div className="flex gap-4 flex-row items-center justify-between min-w-full px-20 border-t-2 py-1">
             <div className="text-base font-semibold">
               Status:
             </div>
