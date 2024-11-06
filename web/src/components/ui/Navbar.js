@@ -21,6 +21,17 @@ const Navbar = () => {
     }
     setDropdownVisible(false);
   };
+
+  const handleLogout = () => {
+      localStorage.clear();
+    
+      document.cookie.split(";").forEach((cookie) => {
+        const cookieName = cookie.split("=")[0].trim();
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      });
+    
+      window.location.reload();
+  }
  
   if(pathname === '/login') {
     return
@@ -50,7 +61,7 @@ const Navbar = () => {
               <div onClick={() => handleOptionClick('/profile')} className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
                 Profile
               </div>
-              <div onClick={handleOptionClick} className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
+              <div onClick={handleLogout} className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
                 Logout
               </div>
             </div>
