@@ -1,6 +1,7 @@
 const axios = require('axios');
 
 const LocationGroup = require('../models/locationGroupModel');
+const { isIterable } = require('../core/utils');
 
 
 const getNearest = async (req, res) => {
