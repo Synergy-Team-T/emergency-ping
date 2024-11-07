@@ -77,7 +77,7 @@ const getUser = async (req, res) => {
   const usr = {
     id: usrObj["_id"],
     ...usrObj,
-    roles: [...usrObj.roles]//, "ADMIN", "EMPLOYEE"],
+    roles: [...usrObj.roles, "ADMIN", "EMPLOYEE"],
   }
   delete usr["_id"];
 
