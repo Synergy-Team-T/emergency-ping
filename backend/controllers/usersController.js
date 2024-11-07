@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 const User = require('../models/userModel');
-
+const mockUserData = require('../mock-mappings/user-data.json');
+const mockUserContact = require('../mock-mappings/user-contact.json');
 
 const FIELDS_TO_POPULATE = [];
 
@@ -34,13 +35,21 @@ const getUsers = async (req, res) => {
 }
 
 const getEmployeeLocations = async (req, res) => {
-  const locations = await User.find({}).sort({createdAt: -1});
-  res.status(200).json(locations);
-}
+  try {
+    const locations = mockUserData.data;  // Accessing the "data" array in mock JSON
+    res.status(200).json(locations);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to load employee locations' });
+  }
+};
 
 const getUserContacts = async (req, res) => {
-  const contacts = await User.find({}).sort({createdAt: -1});
-  res.status(200).json(contacts);
+  try {
+    const contacts = mockUserContact.data;  // Accessing the "data" array in mock JSON
+    res.status(200).json(contacts);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to load contacts' });
+  }
 }
 
 const getUser = async (req, res) => {

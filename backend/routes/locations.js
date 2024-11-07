@@ -1,6 +1,6 @@
 const express = require('express');
 const { requireAuthentication } = require('../middleware/auth');
-const { getNearest } = require('../controllers/locationsController');
+const { getNearest, getAmenities } = require('../controllers/locationsController');
 
 
 const router = express.Router();
@@ -8,6 +8,6 @@ const router = express.Router();
 router.use(requireAuthentication);
 
 router.get('/nearest', getNearest);
-
+router.get('/amenities', getAmenities);
 
 module.exports = router;

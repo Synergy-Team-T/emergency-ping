@@ -3,6 +3,7 @@ const axios = require('axios');
 const LocationGroup = require('../models/locationGroupModel');
 const { isIterable } = require('../core/utils');
 
+const mockAmenities = require('../mock-mappings/amenities.json');
 
 const getNearest = async (req, res) => {
   
@@ -57,7 +58,16 @@ const getNearest = async (req, res) => {
   return res.status(200).json(places);
 }
 
+const getAmenities = async (req, res) => {
+  try {
+    const amenities = mockAmenities.data;  // Accessing the "data" array in mock JSON
+    res.status(200).json(amenities);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to load amenities' });
+  }
+}
 
 module.exports = {
   getNearest,
+  getAmenities
 }
