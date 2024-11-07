@@ -61,4 +61,16 @@ const sendStatus = async ([baseUrl = "http://localhost:5000", id, status = 'SAFE
   }
 };
 
-export { getUserStatus, getUserProfile, sendStatus };
+const getContactNumbers = async (baseUrl = "http://localhost:5000") => {
+  const epURL = `${baseUrl}/api/users/contacts`;
+
+  try {
+    const res = await axios.get(epURL);
+    return res?.data[0]
+  } catch (e) {
+    console.log("Error getting user contact numbers." + epURL);
+    throw e;
+  }
+};
+
+export { getUserStatus, getUserProfile, sendStatus, getContactNumbers };
