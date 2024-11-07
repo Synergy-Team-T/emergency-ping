@@ -1,3 +1,4 @@
+import Chatbot from "@synergy-project-t/ui-components/chatbot/ChatBotHelper";
 import EmployeeActions from "@synergy-project-t/ui-components/employee/EmployeeActions";
 import EmployeeDetails from "@synergy-project-t/ui-components/employee/EmployeeDetails";
 import { StoreUtil } from "@synergy-project-t/utils";
@@ -54,6 +55,7 @@ const EmployeePage = () => {
     <div class="flex h-full gap-2">
       <EmployeeDetails userDetails={userInfo} onSendStatus={handleClickSend} />
       <EmployeeActions userDetails={userInfo} amenities={amenities} />
+      <Chatbot />
     </div>
   );
 };
