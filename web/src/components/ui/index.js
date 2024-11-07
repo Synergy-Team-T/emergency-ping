@@ -9,5 +9,6 @@ export { default as AdminGroupSection } from './admin/AdminGroupSection';
 export { default as AdminView } from './admin/AdminView';
 export { default as AdminNewsSection } from './admin/AdminNewsSection';
 export { default as AdminNotificationsSection } from './admin/AdminNotificationsSection';
+export { default as NewsItem } from './admin/NewsItem.js';
 export { default as UserDetails } from './profile/UserDetails';
 export { default as UserAddress } from './profile/UserAddress';
