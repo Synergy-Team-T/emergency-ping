@@ -2,11 +2,12 @@ import useSWR from "swr";
 import {StoreUtil, AuthUtil} from "@synergy-project-t/utils";
 import { useEffect } from "react";
 import AuthGuard from "./AuthGuard";
+import { getUserProfile } from "@synergy-project-t/utils/user";
 
 // This wrapper ensures that auth revalidation is consistently running throughout the app
 const AuthWrapper = ({children}) => {
 
-  const { userAuth, setUserAuth, removeUserAuth } = StoreUtil.useUserAuthStore((state) => state);
+  const { userAuth, setUserAuth, removeUserAuth, setUserInfo, setLocations } = StoreUtil.useUserAuthStore((state) => state);
   const { id: userAuthId, email: userAuthEmail } = userAuth;
 
   const { data: authData, error: authError, isLoading: authIsLoading } = useSWR(
@@ -37,6 +38,18 @@ const AuthWrapper = ({children}) => {
     JSON.stringify(authError),
     authIsLoading
   ]);
+
+  useEffect(() => {
+    if(userAuth.id) {
+      initializeUserData()
+    }
+  }, [userAuth]);
+
+  const initializeUserData = async () => {
+   const { user, locations } = await getUserProfile(["http://localhost:5000", userAuth.id])
+   setUserInfo(user);
+   setLocations(locations)
+  };
 
   return (<>
     <AuthGuard>

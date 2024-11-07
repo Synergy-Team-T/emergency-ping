@@ -3,12 +3,10 @@ import logo from "../../assets/images/emergency-logo.png";
 import CodevLogo from "../../assets/images/logo.png";
 import CustomInput from "@synergy-project-t/ui-components/CustomInput";
 import CustomButton from "@synergy-project-t/ui-components/CustomButton";
-import { useNavigate } from "react-router-dom";
 import { AuthUtil } from "@synergy-project-t/utils";
 import { useUserAuthStore } from "@synergy-project-t/utils/stores";
 
 const LoginPage = () => {
-  const navigate = useNavigate()
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
