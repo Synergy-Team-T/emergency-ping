@@ -59,9 +59,16 @@ const getNearest = async (req, res) => {
 }
 
 const getAmenities = async (req, res) => {
+  const { id } = req.params;
   try {
     const amenities = mockAmenities.data;  // Accessing the "data" array in mock JSON
-    res.status(200).json(amenities);
+    if(id) {
+      const userAmenities = amenities.find((amenity) => amenity.userId === id)
+      res.status(200).json(userAmenities);
+    } else {
+      res.status(200).json(amenities);
+    }
+
   } catch (error) {
     res.status(500).json({ error: 'Failed to load amenities' });
   }

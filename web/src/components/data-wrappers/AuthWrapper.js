@@ -3,11 +3,12 @@ import {StoreUtil, AuthUtil} from "@synergy-project-t/utils";
 import { useEffect } from "react";
 import AuthGuard from "./AuthGuard";
 import { getContactNumbers, getUserProfile } from "@synergy-project-t/utils/user";
+import { getAmenities } from "@synergy-project-t/utils/locations";
 
 // This wrapper ensures that auth revalidation is consistently running throughout the app
 const AuthWrapper = ({children}) => {
 
-  const { userAuth, setUserAuth, removeUserAuth, setUserInfo, setLocations, setContactNumbers } = StoreUtil.useUserAuthStore((state) => state);
+  const { userAuth, setUserAuth, removeUserAuth, setUserInfo, setLocations, setContactNumbers, setAmenities } = StoreUtil.useUserAuthStore((state) => state);
   const { id: userAuthId, email: userAuthEmail } = userAuth;
 
   const { data: authData, error: authError, isLoading: authIsLoading } = useSWR(
@@ -41,16 +42,21 @@ const AuthWrapper = ({children}) => {
 
   useEffect(() => {
     if(userAuth.id) {
-      initializeUserData()
+      initializeUserData(userAuth.id)
     }
   }, [userAuth]);
 
-  const initializeUserData = async () => {
+  const initializeUserData = async (id) => {
     const baseUrl = "http://localhost:5000";
-   const [{ user, locations }, contacts] = await Promise.all([getUserProfile([baseUrl, userAuth.id]), getContactNumbers(baseUrl)])
+   const [{ user, locations }, contacts, amenities] = await Promise.all([
+    getUserProfile([baseUrl, userAuth.id]),
+    getContactNumbers(baseUrl),
+    getAmenities([baseUrl, id]),
+  ])
    setUserInfo(user);
    setLocations(locations)
    setContactNumbers(contacts)
+   setAmenities(amenities)
   };
 
   return (<>

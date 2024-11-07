@@ -16,6 +16,19 @@ const getLocations = async (baseUrl = 'http://localhost:5000') => {
     return res?.data;
 };
 
+const getAmenities = async ([baseUrl = "http://localhost:5000", id = '']) => {
+    const epURL = `${baseUrl}/api/locations/amenities/${id}`;
+  
+    try {
+      const res = await axios.get(epURL);
+      return res?.data.amenities
+    } catch (e) {
+      console.log("Error getting user amenities." + epURL);
+      throw e;
+    }
+  };
+
 export {
     getLocations,
+    getAmenities
 };

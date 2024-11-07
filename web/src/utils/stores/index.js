@@ -14,6 +14,7 @@ const useUserAuthStore = create(
             },
             locations: [],
             contactNumbers: null,
+            amenities: [],
             userInfo: {
                 id: null,
                 firstName: null,
@@ -34,6 +35,9 @@ const useUserAuthStore = create(
             }),
             setContactNumbers: (contactNumbers) => set({ 
                 contactNumbers,
+            }),
+            setAmenities: (amenities) => set({ 
+                amenities,
             }),
             setUserAuth: (userAuth = {}) => set((state) => ({ 
                 userAuth: {
