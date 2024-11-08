@@ -29,9 +29,9 @@ const Footer = () => {
   };
 
   const FooterComp = (
-    <nav className="bg-white py-4 px-8 border border-b-[rgba(229, 231, 235)] mt-10 ">
-      <div className="ml-10 flex justify-between items-start">
-        <div className="flex flex-col w-1/3">
+    <nav className="bg-white py-6 px-16 border border-b-[rgba(229, 231, 235)] ">
+      <div className="flex justify-around items-start">
+        <div className="flex flex-col w-[30%]">
           <div className="text-xl font-semibold">CoDev Emergency Help</div>
           <div className="mt-2">
             Our mission is to equip CoDevs's employees with vital resources and
@@ -41,7 +41,7 @@ const Footer = () => {
             our priority.
           </div>
         </div>
-        <div className="flex flex-col justify-around items-start">
+        <div className="flex flex-col w-[20%] items-start">
           <div className="text-xl font-semibold">Codev Contacts</div>
           <div className="flex gap-2 mt-2">
             <div className="font-medium">Immediate Supervisor: </div>
@@ -59,7 +59,7 @@ const Footer = () => {
             <a href="tel:PHONE_NUM"> {numbers.codevContacts.hrDepartment} </a>
           </div>
         </div>
-        <div className="flex flex-col justify-around items-start">
+        <div className="flex flex-col w-[20%] items-start">
           <div className="text-xl font-semibold">Emergency Contacts</div>
           <div className="flex gap-2 mt-2">
             <div className="font-medium">Emergency Hotline: </div>

@@ -1,4 +1,4 @@
-import { usePrevious } from "@synergy-project-t/utils";
+import { usePrevious, UserUtil } from "@synergy-project-t/utils";
 import { useMapViewStore } from "@synergy-project-t/utils/stores";
 
 const StatusIcon = ({status}) => <div class={`
@@ -8,6 +8,15 @@ const StatusIcon = ({status}) => <div class={`
     mr-[0.5em] 
     rounded-2xl
 `}/>
+
+const handleSendStatus = (userId) => async () => {
+    try {
+        await UserUtil.sendStatus(["http://localhost:5000", userId, 'PENDING']);
+    }
+    catch (err) {
+
+    }
+}
 
 const OverviewSection = ({groupDetails = {}}) => {
 
@@ -243,7 +252,9 @@ const OverviewSection = ({groupDetails = {}}) => {
                                 hover:cursor-pointer
                                 hover:shadow-lg
                                 click:bg-red-400
-                            ">{"SEND PING"}</div>
+                            "
+                            onClick={handleSendStatus(e.id || '672cda6d850ace4fcd3a0d46')}
+                            >{"SEND PING"}</div>
                         </div>
                     </details>
                 ))

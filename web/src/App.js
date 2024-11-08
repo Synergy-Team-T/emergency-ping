@@ -17,8 +17,8 @@ const App = () => {
         <div className='flex flex-col h-[100%] p-5 overflow-y-hidden'>
           <Outlet />
         </div>
+        <Footer />
       </div>
-      <Footer />
     </AuthWrapper>;
 
   const router = createBrowserRouter([

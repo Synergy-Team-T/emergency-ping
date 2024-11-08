@@ -9,9 +9,11 @@ const AuthGuard = ({children}) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const { id: userAuthId, roles: userAuthRoles = [] } = StoreUtil.useUserAuthStore((state) => state.userAuth);
+  const { id: userAuthId, roles: userAuthRoles = [], isInitializing } = StoreUtil.useUserAuthStore((state) => state.userAuth);
 
   useEffect(() => {
+
+    if (isInitializing) return;
 
     const isNonAuthAccessingPrivate = !publicRoutes.includes(pathname) && (!userAuthId || userAuthRoles.length == 0);
     const isNonAdminAccessingAdminView = userAuthRoles.length > 0 && !userAuthRoles.includes('ADMIN') && pathname == '/';
@@ -30,6 +32,7 @@ const AuthGuard = ({children}) => {
   },[
     userAuthId,
     userAuthRoles,
+    isInitializing,
     pathname
   ]);
 

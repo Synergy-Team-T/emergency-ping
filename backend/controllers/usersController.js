@@ -82,11 +82,16 @@ const getUser = async (req, res) => {
   //console.log(typeof user)
 
   const usrObj = user//.toObject();
+  const addtRoles = user.email === 'owner@codev.com' ? ["ADMIN"] : []
 
   const usr = {
     id: usrObj["_id"],
     ...usrObj,
-    roles: [...usrObj.roles, "ADMIN", "EMPLOYEE"],
+    roles: [
+      ...usrObj.roles, 
+      "EMPLOYEE",
+      ...addtRoles
+    ],
   }
   delete usr["_id"];
 
