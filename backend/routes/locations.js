@@ -9,5 +9,7 @@ router.use(requireAuthentication);
 
 router.get('/nearest', getNearest);
 router.get('/amenities', getAmenities);
+router.get('/amenities/:id', getAmenities);
+
 
 module.exports = router;

@@ -1,28 +1,17 @@
 {
     "data": [
         {
-            "codevContacts":[
-                {
-                    "immediateSupervisor": "0932 413 9224"
-                },
-                {
-                   "itDepartment": "0939 639 9124"
-                },
-                {
+            "codevContacts":{
+                    "immediateSupervisor": "0932 413 9224",
+                    "itDepartment": "0939 639 9124",
                     "hrDepartment": "0939 639 9124"
-                }
-              ],
-              "emergencyContacts":[
+              },
+              "emergencyContacts":
                 {
-                    "emergencyHotline": "911"
-                },
-                {
-                   "fireDepartment": "(04593) 13638"
-                },
-                {
+                    "emergencyHotline": "911",
+                    "fireDepartment": "(04593) 13638",
                     "policeDepartment": "0939 220 4252"
                 }
-              ]
         }
     ],
     "errors": null

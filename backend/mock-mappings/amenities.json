@@ -1,19 +1,64 @@
 {
     "data": [
         {
-            "address": [13.94287705402975, 121.13696243600263],
-            "type": "HOSPITAL",
-            "name": "Jollibee"
+            "userId": "671f7b13b148028463c3ff51",
+            "amenities": [
+                {
+                    "address": [14.83632260744852, 120.28657321561955],
+                    "type": "HOSPITAL",
+                    "name": "Ridon's St. Jude Medical Center"
+                },
+                {
+                    "address": [14.842480469105508, 120.28839628461132],
+                    "type": "EVACUATION_CENTER",
+                    "name": "Olongapo City Hall"
+                },
+                {
+                    "address": [14.842021005976525, 120.29124051249573],
+                    "type": "COFFEE_SHOP",
+                    "name": "Cafe-bara"
+                }
+            ]
         },
         {
-            "address": [13.94301475117621, 121.13415874823322],
-            "type": "EVACUATION_CENTER",
-            "name": "24 Chicken"
+            "userId": "671f7b13b148028463c3ff59",
+            "amenities": [
+                {
+                    "address": [9.796033680045733, 118.75559798667777],
+                    "type": "HOSPITAL",
+                    "name": "House Hospital Palawan"
+                },
+                {
+                    "address": [9.75759355278851, 118.75240623817265],
+                    "type": "EVACUATION_CENTER",
+                    "name": "Kilos Agad Action Center (KAAC)"
+                },
+                {
+                    "address": [9.755506930801765, 118.74155954397573],
+                    "type": "COFFEE_SHOP",
+                    "name": "SSPRESS O! Coffee & Co."
+                }
+            ]
         },
         {
-            "address": [13.945345580350967, 121.13886370498118],
-            "type": "COFFEE_SHOP",
-            "name": "Starbuko"
+            "userId": "671f7b13b148028463c3ff5b",
+            "amenities": [
+                {
+                    "address": [14.65355486788129, 120.97333430771539],
+                    "type": "HOSPITAL",
+                    "name": "Caloocan City Medical Center (South)"
+                },
+                {
+                    "address": [14.636334002859014, 120.96232259546638],
+                    "type": "EVACUATION_CENTER",
+                    "name": "Sports Activity & Evacuation Center"
+                },
+                {
+                    "address": [14.652355991083919, 120.98767131034032],
+                    "type": "COFFEE_SHOP",
+                    "name": "Presko Coffee - Caloocan"
+                }
+            ]
         }
     ],
     "errors": null

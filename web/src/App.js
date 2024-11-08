@@ -10,7 +10,6 @@ import { AuthWrapper } from "@synergy-project-t/data-wrappers";
 import { LoginPage, Homepage, ProfilePage, EmployeePage } from "@synergy-project-t/pages";
 
 const App = () => {
-  const location = window.location.pathname;
   const MainApp = 
     <AuthWrapper>
       <div className="flex flex-col h-screen bg-[#fbfbfb]">
@@ -19,7 +18,7 @@ const App = () => {
           <Outlet />
         </div>
       </div>
-      {(location === '/employee' || location === '/profile') && <Footer />}
+      <Footer />
     </AuthWrapper>;
 
   const router = createBrowserRouter([
