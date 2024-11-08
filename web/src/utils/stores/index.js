@@ -11,6 +11,7 @@ const useUserAuthStore = create(
                 lastName: null,
                 roles: [],
                 email: null,
+                isInitializing: false
             },
             locations: [],
             contactNumbers: null,
@@ -47,6 +48,7 @@ const useUserAuthStore = create(
                     lastName: userAuth.lastName,
                     roles: userAuth.roles,
                     email: userAuth.email,
+                    isInitializing: userAuth.isInitializing,
                 }
             })),
             removeUserAuth: () => set({ 
@@ -55,7 +57,8 @@ const useUserAuthStore = create(
                     firstName: null,
                     lastName: null,
                     roles: [], 
-                    email: null
+                    email: null,
+                    isInitializing: false
                 }
             }),
             setUserInfo: (user = {}) => set(() => ({ 

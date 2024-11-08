@@ -24,7 +24,10 @@ const AuthWrapper = ({children}) => {
     if (!authIsLoading) {
       if (authData?.email) {
         if (authData.email !== userAuthEmail) {
-          setUserAuth(authData);
+          setUserAuth({
+            ...authData,
+            isInitializing: false
+          });
         }
         else {
           // do nothing
@@ -41,7 +44,7 @@ const AuthWrapper = ({children}) => {
   ]);
 
   useEffect(() => {
-    if(userAuth.id) {
+    if(userAuth.id && !userAuth?.isInitializing) {
       initializeUserData(userAuth.id)
     }
   }, [userAuth]);

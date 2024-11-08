@@ -134,7 +134,7 @@ const notificationsOLD = [
 const AdminNotificationsSection = ({}) => {
 
     return (
-        <div className="flex flex-col border rounded-[0.22rem] h-[50%]">
+        <div className="flex flex-col border rounded-[0.22rem] h-[40%]">
             <div className="w-[100%] bg-[rgb(244,247,247)] px-7 py-4 font-medium">NOTIFICATIONS</div>
             <div class="
                 flex

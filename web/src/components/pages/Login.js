@@ -22,18 +22,24 @@ const LoginPage = () => {
     });
 
     if (data?.id) {
-      setUserAuth(data);
+      setUserAuth({
+        ...data,
+        isInitializing: true // initialize the login sequence
+      });
     }
 
     setIsLoading(false);
   }
 
   return (
-    <div className="min-h-screen bg-white flex flex-col md:flex-row">
+    <div className="min-h-screen flex flex-col md:flex-row">
       <div
-        className="md:w-1/2 bg-cover bg-center m-5"
-        style={{ backgroundImage: `url(${logo})` }}
-      ></div>
+        className="hidden lg:block w-1/2 content-center justify-center"
+      >
+        <div class="h-[60%] justify-self-center aspect-square rounded-full bg-white overflow-hidden">
+          <img src={logo} alt="App Logo" className="h-[100%] w-[100%] object-scale-down" />
+        </div>
+      </div>
 
       <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
         <div className="flex justify-center mb-4">
